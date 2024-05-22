@@ -17,6 +17,7 @@ namespace NTTShopAdmin.Controllers
 {
     public class UsuariosController : Controller
     {
+        //Acción principal de usuarios
         public ActionResult Usuarios(int? pageSize, int? page) 
         {
             AmbosUsuarios ambosUsuarios = new AmbosUsuarios();
