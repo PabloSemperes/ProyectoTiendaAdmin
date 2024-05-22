@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Users";
+}
+
+@using PagedList.Mvc;
+@model PagedList.IPagedList<NTTShopAdmin.Entities.ManagementUser>
+
+<h3>Management Users</h3>
+
+<form method="post">
+    <input type="text" name="searchTerm">
+    <input type="submit" value="Buscar" class="btn-primary" onclick="location.href = '@(Url.Action("Usuarios", "Usuarios"))'">
+</form>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>ID</th>
+                <th>Login</th>
+                <th>Password</th>
+                <th>Name</th>
+                <th>Surname1</th>
+                <th>Surname2</th>
+                <th>Mail</th>
+                <th>Language</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (NTTShopAdmin.Entities.ManagementUser item in Model)
+            {
+                <tr>
+                    <th><button onclick="location.href = '@(Url.Action("RemoveManagementUser", "UsuariosAdministradores", new { id = item.PkUser , pagina = Model.PageNumber}))'">&#x274c;</button></th>
+                    <th style="padding-right: 2em"><button onclick="location.href = '@(Url.Action("UsuarioVista", "UsuarioVista", new { user = item }))'">&#128221;</button></th>
+                    <td>@item.PkUser</td>
+                    <td>@item.Login</td>
+                    <td>@item.Password</td>
+                    <td>@item.Name</td>
+                    <td>@item.Surname1</td>
+                    <td>@item.Surname2</td>
+                    <td>@item.Email</td>
+                    <td>@item.Language</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<br />
+Page @( Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+<br />
+Total Item Count @Model.TotalItemCount
+
+@Html.PagedListPager(Model, page => Url.Action("UsuariosAdministradores", "UsuariosAdministradores", new { page, pageSize = ViewBag.PageSize }))

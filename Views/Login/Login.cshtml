@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@model NTTShopAdmin.Entities.ManagementUser
+
+@using (Html.BeginForm("Login", "Login", FormMethod.Post))
+{
+    <fieldset>
+        <legend>Introduzca las credenciales del usuario administrador</legend>
+
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @if (@ViewBag.Message != null)
+        {
+            <div style="color: red">
+                @ViewBag.Message
+            </div>
+        }
+
+        <table>
+            <tr>
+                <td>
+                    Login:  
+                </td>
+                <td>
+                    @Html.TextBoxFor(a => a.Login)
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(a => a.Login)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Contraseña:  
+                </td>
+                <td>
+                    @Html.PasswordFor(a => a.Password)
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(a => a.Password)
+                </td>
+                <br/>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input class="btn btn-primary" type="submit" value="Login" />
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </fieldset>
+}

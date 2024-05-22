@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Users";
+}
+
+<h2>Products</h2>
+@using PagedList.Mvc;
+@model PagedList.IPagedList<NTTShopAdmin.Entities.Product>
+
+<form method="post">
+    <input type="text" name="searchTerm" @*value="@(ViewBag.searchName)*@>
+    <input type="submit" value="Buscar" class="btn-primary" onclick="location.href = '@(Url.Action("Productos", "Productos"))'">
+</form>
+<br />
+<button type="button" class="btn btn-primary" onclick="location.href = '@(Url.Action("AnyadeProducto", "Productos"))'">
+    Añadir producto
+</button>
+<br /> <br />
+<div class="row">
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <div class="col-md-3">
+            <button type="button" class="btn btn-close-white" aria-label="Close">X</button>
+            <div style="border: groove; padding: 2em; border-radius: 2em; margin: 1em; cursor: pointer;" onclick="location.href = '@(Url.Action("RecibirProducto", "Productos", new { id = Model[i].idProduct }))'">
+                <div style="margin-bottom: 1em;">
+                    #@Model[i].idProduct @Model[i].descriptions[0].title <br /> Stock: @Model[i].stock
+                </div>
+                <ul class="list-group list-group-flush">
+                    @foreach (NTTShopAdmin.Entities.ProductDescription descrip in Model[i].descriptions)
+                    {
+                        <li class="list-group-item" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                            <div>@descrip.description</div>
+                            <span class="badge text-bg-secondary rounded-pill">@descrip.language</span>
+                        </li>
+                    }
+                </ul>
+                <ul class="list-group list-group-flush">
+                    @foreach (NTTShopAdmin.Entities.ProductRate rate in Model[i].rates)
+                    {
+                        <li class="list-group-item">@rate.price € <span class="badge text-bg-secondary rounded-pill">@rate.idRate</span></li>
+                    }
+                </ul>
+
+            </div>
+        </div>
+    }
+</div>
+<br />
+Page @( Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+<br />
+Total Item Count @Model.TotalItemCount
+
+@Html.PagedListPager(Model, page => Url.Action("Productos", "Productos", new { page, pageSize = ViewBag.PageSize }))

@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Añade producto";
+}
+
+<h2>Añadir producto</h2>
+
+@model NTTShopAdmin.Entities.Product
+
+
+@using (Html.BeginForm("AnyadeProducto", "Productos", FormMethod.Post))
+{
+    <div hidden>
+        @Html.EditorFor(a => a.idProduct)
+    </div>
+    <div class="form-group">
+        <label for="nombreInput">Stock</label>
+        @Html.EditorFor(a => a.stock, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.CheckBoxFor(a => a.enabled)
+        <label class="form-check-label">Disponible</label>
+    </div>
+    <div class="form-group">
+        <label>Lenguaje producto</label>
+        @Html.DropDownListFor(a => a.descriptions[0].language,
+                new SelectList(ViewBag.Lenguajes, "es"))
+    </div>
+    <div class="form-group">
+        <label for="nombreInput">Nombre</label>
+        @Html.TextBoxFor(a => a.descriptions[0].title, new { id = "nombreInput", placeholder = "Introduzca el nombre del producto", @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label for="descripcionInput">Descripción</label>
+        @Html.TextAreaFor(a => a.descriptions[0].description, new { id = "descripcionInput", placeholder = "Introduzca la descripción del producto", @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Registrar producto</button>
+}

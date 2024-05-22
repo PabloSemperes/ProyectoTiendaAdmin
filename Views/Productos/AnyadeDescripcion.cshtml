@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Añade descripción";
+}
+
+<h2>Añadir descripción</h2>
+
+@model NTTShopAdmin.Entities.ProductDescription
+
+
+@using (Html.BeginForm("AnyadeDescripcion", "Productos", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div hidden>
+        @Html.EditorFor(a => a.idProduct)
+    </div>
+    <div hidden>
+        @Html.EditorFor(a => a.idProductDescription)
+    </div>
+    <div class="form-group">
+        <label for="nombreInput">Nombre</label>
+        @Html.TextBoxFor(a => a.title, new { id = "nombreInput", placeholder = "Introduzca el nombre del producto", @class = "form-control" })
+        <small id="nombreHelp" class="form-text text-muted">Tenga en cuenta que solo el primer nombre de cada idioma será mostrado</small>
+        <br />@Html.ValidationMessageFor(a => a.title, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        <label for="descripcionInput">Descripción</label>
+        @Html.TextAreaFor(a => a.description, new { id = "descripcionInput", placeholder = "Introduzca la descripción del producto", @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Lenguaje producto</label>
+        @Html.DropDownListFor(a => a.language,
+                new SelectList(ViewBag.Lenguajes, "es"))
+    </div>
+    <button type="submit" class="btn btn-primary">Registrar descripción</button>
+}

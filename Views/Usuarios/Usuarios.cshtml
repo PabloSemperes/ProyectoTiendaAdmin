@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Users";
+}
+
+<h2>Users</h2>
+@using PagedList.Mvc;
+@model PagedList.IPagedList<NTTShopAdmin.Entities.User>
+
+<form method="post">
+    <input type="text" name="searchTerm">
+    <input type="submit" value="Buscar" class="btn-primary" onclick="location.href = '@(Url.Action("Usuarios", "Usuarios"))'">
+</form>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>ID</th>
+                <th>Login</th>
+                <th>Password</th>
+                <th>Name</th>
+                <th>Surname1</th>
+                <th>Surname2</th>
+                <th>Adress</th>
+                <th>Province</th>
+                <th>Town</th>
+                <th>Postal Code</th>
+                <th>Phone</th>
+                <th>Mail</th>
+                <th>Language</th>
+                <th>Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (NTTShopAdmin.Entities.User item in Model)
+            {
+                <tr>
+                    <th><button onclick="location.href = '@(Url.Action("RemoveUser", "Usuarios", new { id = item.PkUser }))'">&#x274c;</button></th>
+                    <th style="padding-right: 2em"><button onclick="location.href = '@(Url.Action("MostrarUsuario", "Usuarios", new { id = item.PkUser }))'">&#128221;</button></th>
+                    <td>@item.PkUser</td>
+                    <td>@item.Login</td>
+                    <td>@item.Password</td>
+                    <td>@item.Name</td>
+                    <td>@item.Surname1</td>
+                    <td>@item.Surname2</td>
+                    <td>@item.Adress</td>
+                    <td>@item.Province</td>
+                    <td>@item.Town</td>
+                    <td>@item.PostalCode</td>
+                    <td>@item.Phone</td>
+                    <td>@item.Email</td>
+                    <td>@item.Language</td>
+                    <td>@item.Rate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<br />
+Page @( Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+<br />
+Total Item Count @Model.TotalItemCount
+
+@Html.PagedListPager(Model, page => Url.Action("Usuarios", "Usuarios", new { page, pageSize = ViewBag.PageSize }))

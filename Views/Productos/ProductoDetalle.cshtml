@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "Editar producto";
+}
+
+<h2>Editar producto</h2>
+
+@model NTTShopAdmin.Entities.Product
+
+
+    @using (Html.BeginForm("ProductoDetalle", "Productos", FormMethod.Post))
+    {
+        <fieldset>
+            <div style="border: groove; padding: 2em; border-radius: 2em; margin: 1em; cursor: pointer;">
+                <legend>Modifique los campos deseados y seleccione "Guardar cambios"</legend>
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                @if (@ViewBag.Message != null)
+                {
+                    <div style="color: red">
+                        @ViewBag.Message
+                    </div>
+                }
+                <div hidden>
+                    @Html.EditorFor(a => a.idProduct)
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="form-label">Stock</label>
+                        @Html.EditorFor(a => a.stock)
+                    </div>
+                    <div class="col-md-3 form-check">
+                        @Html.CheckBoxFor(a => a.enabled)
+                        <label class="form-check-label">Disponible</label>
+                    </div>
+                </div>
+                <br />
+                @for (int i = 0; i < Model.descriptions.Count; i++)
+                {
+                    <div hidden>
+                        @Html.EditorFor(a => a.descriptions[i].idProduct)
+                    </div>
+                    <div hidden>
+                        @Html.EditorFor(a => a.descriptions[i].idProductDescription)
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="form-label">Nombre producto</label>
+                            @Html.TextBoxFor(a => a.descriptions[i].title)
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Descripción producto</label>
+                            @Html.TextBoxFor(a => a.descriptions[i].description)
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Lenguaje producto</label>
+                            @Html.DropDownListFor(a => a.descriptions[i].language,
+                                    new SelectList(ViewBag.Lenguajes, Model.descriptions[i].language))
+                        </div>
+                    </div>
+                }
+                <br />
+                <button type="button" class="btn btn-sm" onclick="location.href = '@(Url.Action("AnyadeDescripcion", "Productos"))'">
+                    Añadir descripción
+                </button>
+            </div>
+
+            @for (int i = 0; i < Model.rates.Count; i++)
+            {
+                <div hidden>
+                    @Html.EditorFor(a => a.rates[i].idProduct)
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        @Html.TextBoxFor(a => a.rates[i].idRate, new { @readonly = "readonly" })
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Precio</label>
+                        @Html.EditorFor(a => a.rates[i].price)
+                    </div>
+                </div>
+            }
+            <br />
+            <button type="button" class="btn btn-sm" onclick="location.href = '@(Url.Action("PreparaPrecio", "Productos"))'">
+                Añadir precio
+            </button>
+            <br /><br />
+            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        </fieldset>
+    }
+
+

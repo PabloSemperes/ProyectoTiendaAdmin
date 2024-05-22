@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "Orders";
+}
+
+<h2>Orders</h2>
+@using PagedList.Mvc;
+@model PagedList.IPagedList<NTTShopAdmin.Entities.Order>
+
+
+@using (Html.BeginForm("ListarOrders", "Orders", FormMethod.Post))
+{
+    <input type="datetime-local" name="dateFrom" value="" />
+    <input type="datetime-local" name="dateTo" value="" />
+    @Html.DropDownList("orderStat", new SelectList(ViewBag.Status, "orderStatusId", "orderStatusName", "")) 
+    <input type="submit" value="Filtrar pedidos" class="btn btn-secondary"/>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>ID</th>
+            <th>Date</th>
+            <th></th>
+            <th>Order Status</th>
+            <th>Total Price</th>
+            <th>User</th>
+            <th style="width: 20em">Order Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+
+            <tr>
+                <th><button onclick="location.href = '@(Url.Action("RemoveOrder", "Orders", new { id = Model[i].idOrder, pagina = Model.PageNumber }))'">&#x274c;</button></th>
+                @using (Html.BeginForm("UpdateOrderStatus", "Orders", FormMethod.Post))
+                {
+                    <td><input name="id" value=@Model[i].idOrder readonly style="padding: 10px; border: none; border-radius: 4px; outline: 2px solid white; background-color: transparent; transition: outline-color 500ms; " /></td>
+                    <td>@Model[i].dateTime</td>
+                    @*<td><input name="fecha" value=@Model[i].dateTime style="padding: 10px; border: none; border-radius: 4px; outline: 2px solid white; background-color: transparent; transition: outline-color 500ms; " /></td>*@
+                    <td><button type="submit" class="btn btn-outline-secondary">Cambiar estado</button></td>
+                    <td>@Html.DropDownList("statu", new SelectList(ViewBag.Status, "orderStatusId", "orderStatusName", Model[i].orderStatus))</td>
+                }
+                <td>@Model[i].totalPrice €</td>
+                @foreach (NTTShopAdmin.Entities.User usuario in (List<NTTShopAdmin.Entities.User>)ViewBag.Users)
+                {
+                    if (Model[i].idUser == usuario.PkUser)
+                    {
+                        <td>@usuario.Login</td>
+                    }
+                }
+                <td>
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#@Model[i].idOrder" aria-expanded="false" aria-controls="collapseTwo">
+                                    Details:
+                                </button>
+                            </h2>
+                            <div id="@Model[i].idOrder" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+
+                                    @foreach (NTTShopAdmin.Entities.OrderDetail detail in Model[i].orderDetails)
+                                    {
+                                        <div class="row" style="border-bottom: groove">
+                                            <div class="col-lg-5">@detail.product.descriptions[0].title</div>
+                                            <div class="col-md-3">x @detail.units</div>
+                                            <div class="col-md-3">@detail.price €</div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+Page @( Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+<br />
+Total Item Count @Model.TotalItemCount
+
+@Html.PagedListPager(Model, page => Url.Action("ListarOrders", "Orders", new { page, pageSize = ViewBag.PageSize }), PagedListRenderOptions.TwitterBootstrapPager)

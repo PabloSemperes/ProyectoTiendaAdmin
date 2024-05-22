@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Users";
+}
+
+@model NTTShopAdmin.Entities.User
+
+<h2>Editar usuario</h2>
+
+@using (Html.BeginForm("UsuarioVista", "Usuarios", FormMethod.Post))
+{
+    <fieldset class="row g-2">
+
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @if (@ViewBag.Message != null)
+        {
+            <div style="color: red">
+                @ViewBag.Message
+            </div>
+        }
+        @Html.HiddenFor(a => a.PkUser)
+        <div class="col-md-3">
+            <label for="LoginID" class="form-label">Login</label>
+            @Html.TextBoxFor(a => a.Login, new { @class = "form-control", @readonly = "readonly" })
+        </div>
+        <div class="col-md-3">
+            <label for="NameID" class="form-label">Name</label>
+            @Html.EditorFor(a => a.Name, new { htmlAttributes = new { @class = "form-control" } })
+            <div style="color: red">@Html.ValidationMessageFor(a => a.Name)</div>
+        </div>
+        <div class="col-md-3">
+            <label for="Surname1ID" class="form-label">Surname1</label>
+            @Html.EditorFor(a => a.Surname1, new { htmlAttributes = new { @class = "form-control" } })
+            <div style="color: red">@Html.ValidationMessageFor(a => a.Surname1)</div>
+        </div>
+        <div class="col-md-3">
+            <label for="Surname2ID" class="form-label">Surname2</label>
+            @Html.EditorFor(a => a.Surname2, new { htmlAttributes = new { @class = "form-control" } })
+            <div style="color: red">@Html.ValidationMessageFor(a => a.Surname2)</div>
+        </div>
+        <div class="col-md-3">
+            <label for="AdressID" class="form-label">Adress</label>
+            @Html.EditorFor(a => a.Adress, new { htmlAttributes = new { @class = "form-control" } })
+            <div style="color: red">@Html.ValidationMessageFor(a => a.Adress)</div>
+        </div>
+        <div class="col-md-3">
+            <label for="ProvinceID" class="form-label">Province</label>
+            @Html.EditorFor(a => a.Province, new { htmlAttributes = new { @class = "form-control" } })
+            <div style="color: red">@Html.ValidationMessageFor(a => a.Province)</div>
+        </div>
+        <div class="col-md-3">
+            <label for="TownID" class="form-label">Town</label>
+            @Html.EditorFor(a => a.Town, new { htmlAttributes = new { @class = "form-control" } })
+            <div style="color: red">@Html.ValidationMessageFor(a => a.Town)</div>
+        </div>
+        <div class="col-md-3">
+            <label for="PostalCodeID" class="form-label">Postal Code</label>
+            @Html.EditorFor(a => a.PostalCode, new { htmlAttributes = new { @class = "form-control" } })
+            <div style="color: red">@Html.ValidationMessageFor(a => a.PostalCode)</div>
+        </div>
+        <div class="col-md-3">
+            <label for="PhoneID" class="form-label">Phone</label>
+            @Html.EditorFor(a => a.Phone, new { htmlAttributes = new { @class = "form-control" } })
+            <div style="color: red">@Html.ValidationMessageFor(a => a.Phone)</div>
+        </div>
+        <div class="col-md-3">
+            <label for="EmailID" class="form-label">Email</label>
+            @Html.EditorFor(a => a.Email, new { htmlAttributes = new { @class = "form-control" } })
+            <div style="color: red">@Html.ValidationMessageFor(a => a.Email)</div>
+        </div>
+        <div class="col-md-3">
+            <label for="LanguageID" class="form-label">Language</label>
+            @Html.DropDownListFor(a => a.Language,
+                    new SelectList(ViewBag.Lenguajes, "es"))
+        </div>
+        <div class="col-md-3">
+            <label for="RateID" class="form-label">Rate</label>
+            @Html.DropDownListFor(a => a.Rate,
+                    new SelectList(ViewBag.Rates, 1))
+        </div>
+        <div>
+            <input type="submit" value="Guardar cambios" />
+            @if (ViewBag.Correcto != null)
+            {
+                <div class="alert alert-success" role="alert">
+                    @ViewBag.Correcto
+                </div>
+            }
+        </div>
+    </fieldset>
+}

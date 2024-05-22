@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "Añade precio";
+}
+
+<h2>Añadir precio</h2>
+
+@model NTTShopAdmin.Entities.ProductRate
+
+
+@using (Html.BeginForm("AnyadirPrecio", "Productos", FormMethod.Post))
+{
+    <div hidden>
+        @Html.EditorFor(a => a.idProduct)
+    </div>
+    <div class="form-group">
+        <label>Id tarifa</label>
+        @Html.DropDownListFor(a => a.idRate,
+                new SelectList(ViewBag.Rates))
+    </div>
+    <div class="form-group">
+        <label for="precioInput">Precio</label>
+        @Html.EditorFor(a => a.price, new { id = "precioInput", @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Registrar precio</button>
+}
+@if (@ViewBag.MessageAnyadPrice != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.MessageAnyadPrice
+    </div>
+}
+

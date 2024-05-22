@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Idiomas";
+}
+
+<h2>Idiomas</h2>
+@using PagedList.Mvc;
+@model PagedList.IPagedList<NTTShopAdmin.Entities.Language>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>ID</th>
+            <th>ISO</th>
+            <th></th>
+            <th>Description</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+
+            <tr>
+                <th><button onclick="location.href = '@(Url.Action("RemoveLanguage", "Language", new { id = Model[i].idLanguage, pagina = Model.PageNumber }))'">&#x274c;</button></th>
+                @using (Html.BeginForm("UpdateLanguage", "Language", FormMethod.Post))
+                {
+                    <td><input name="id" value=@Model[i].idLanguage readonly style="padding: 10px; border: none; border-radius: 4px; outline: 2px solid white; background-color: transparent; transition: outline-color 500ms; " /></td>
+                    <td><input name="iso" value=@Model[i].iso readonly style="padding: 10px; border: none; border-radius: 4px; outline: 2px solid white; background-color: transparent; transition: outline-color 500ms; " /></td>
+                    <td><button type="submit" class="btn btn-outline-secondary">Modificar idioma</button></td>
+                    <td><input name="descripcion" value=@Model[i].description class="form-control" /></td>
+                    if (@ViewBag.Correct != null && ViewBag.Correct == Model[i].idLanguage)
+                    {
+                        <td><div style="color: chartreuse">Actualizado</div></td>
+                    }
+                    else if (@ViewBag.Wrong != null && ViewBag.Wrong == Model[i].idLanguage)
+                    {
+                        <td><div style="color:firebrick">Por favor, rellena la descripción</div></td>
+                    }
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (TempData["sErrMsg"] != null)
+{
+    Html.RenderPartial("ErrorLanguage", TempData["sErrMsg"]);
+}
+
+
+
+<br />
+Page @( Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+<br />
+Total Item Count @Model.TotalItemCount
+
+@Html.PagedListPager(Model, page => Url.Action("ListarOrders", "Orders", new { page, pageSize = ViewBag.PageSize }), PagedListRenderOptions.TwitterBootstrapPager)
