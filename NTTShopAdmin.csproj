@@ -579,6 +579,7 @@
     <Content Include="Views\Language\Language.cshtml" />
     <Content Include="Views\Language\ErrorLanguage.cshtml" />
     <Content Include="Views\UsuariosAdministradores\UsuariosAdministradores.cshtml" />
+    <Content Include="Views\UsuariosAdministradores\UsuarioAdministradorVista.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -17,8 +17,13 @@ namespace NTTShopAdmin.Controllers
 {
     public class UsuariosController : Controller
     {
+        //Acción principal de usuarios
         public ActionResult Usuarios(int? pageSize, int? page) 
         {
+            if (Session["UserLogin"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             AmbosUsuarios ambosUsuarios = new AmbosUsuarios();
             var users = GetAllUsers();
 
@@ -57,6 +62,10 @@ namespace NTTShopAdmin.Controllers
         }
         public ActionResult UsuarioVista(User user)
         {
+            if (Session["UserLogin"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             ViewBag.Lenguajes = GetAllLanguagesIsos();
             ViewBag.Rates = GetAllRatesId();
             if (ModelState.IsValid)

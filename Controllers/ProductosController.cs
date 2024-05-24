@@ -22,6 +22,10 @@ namespace NTTShopAdmin.Controllers
     {
         public ActionResult Productos(int? pageSize, int? page)
         {
+            if (Session["UserLogin"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             AmbosUsuarios ambosUsuarios = new AmbosUsuarios();
             var products = GetAllProducts();
 
@@ -33,6 +37,10 @@ namespace NTTShopAdmin.Controllers
         }
         public ActionResult AnyadeProducto(Product product) 
         {
+            if (Session["UserLogin"] == null)
+            {
+                RedirectToAction("Login");
+            }
             ViewBag.Lenguajes = GetAllLanguagesIsos();
             if (product.descriptions == null)
             {
@@ -58,6 +66,10 @@ namespace NTTShopAdmin.Controllers
         }
         public ActionResult ProductoDetalle(Product producto) 
         {
+            if (Session["UserLogin"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             ViewBag.Lenguajes = GetAllLanguagesIsos();
             if (ModelState.IsValid)
             {
@@ -114,6 +126,10 @@ namespace NTTShopAdmin.Controllers
         }
         public ActionResult AnyadeDescripcion(ProductDescription desc)
         {
+            if (Session["UserLogin"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             ViewBag.Lenguajes = GetAllLanguagesIsos();
             if (desc.title == null) //Primera entrada, se prepara el modelo
             {
@@ -145,6 +161,10 @@ namespace NTTShopAdmin.Controllers
         }
         public ActionResult AnyadirPrecio(ProductRate rate) 
         {
+            if (Session["UserLogin"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             ViewBag.Rates = GetAllRatesId();
             if (TempData["NuevoPrecio"] != null)
             {

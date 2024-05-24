@@ -21,6 +21,10 @@ namespace NTTShopAdmin.Controllers
         // GET: Orders
         public ActionResult ListarOrders(int? pageSize, int? page, DateTime? dateFrom, DateTime? dateTo, int? orderStat)
         {
+            if (Session["UserLogin"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var orders = GetAllOrders(dateFrom,dateTo,orderStat);
             ViewBag.Status = GetAllOrderStatus();
             ViewBag.Users = GetAllUsers();

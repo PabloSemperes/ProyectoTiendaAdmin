@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "ManagementUsers";
+}
+
+@model NTTShopAdmin.Entities.ManagementUser
+
+<h2>Editar usuario administrador</h2>
+
+@using (Html.BeginForm("UsuarioAdministradorVista", "UsuariosAdministradores", FormMethod.Post))
+{
+    <fieldset class="row g-2">
+
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @if (@ViewBag.Message != null)
+        {
+            <div style="color: red">
+                @ViewBag.Message
+            </div>
+        }
+        @Html.HiddenFor(a => a.PkUser)
+        @Html.HiddenFor(a => a.Password)
+        <div class="col-md-3">
+            <label for="LoginID" class="form-label">Login</label>
+            @Html.TextBoxFor(a => a.Login, new { @class = "form-control", @readonly = "readonly" })
+        </div>
+        <div class="col-md-3">
+            <label for="NameID" class="form-label">Name</label>
+            @Html.EditorFor(a => a.Name, new { htmlAttributes = new { @class = "form-control" } })
+            <div style="color: red">@Html.ValidationMessageFor(a => a.Name)</div>
+        </div>
+        <div class="col-md-3">
+            <label for="Surname1ID" class="form-label">Surname1</label>
+            @Html.EditorFor(a => a.Surname1, new { htmlAttributes = new { @class = "form-control" } })
+            <div style="color: red">@Html.ValidationMessageFor(a => a.Surname1)</div>
+        </div>
+        <div class="col-md-3">
+            <label for="Surname2ID" class="form-label">Surname2</label>
+            @Html.EditorFor(a => a.Surname2, new { htmlAttributes = new { @class = "form-control" } })
+            <div style="color: red">@Html.ValidationMessageFor(a => a.Surname2)</div>
+        </div>
+        <div class="col-md-3">
+            <label for="EmailID" class="form-label">Email</label>
+            @Html.EditorFor(a => a.Email, new { htmlAttributes = new { @class = "form-control" } })
+            <div style="color: red">@Html.ValidationMessageFor(a => a.Email)</div>
+        </div>
+        <div class="col-md-3">
+            <label for="LanguageID" class="form-label">Language</label>
+            @Html.DropDownListFor(a => a.Language,
+                    new SelectList(ViewBag.Lenguajes, "es"))
+        </div>
+        <div>
+            <input type="submit" value="Guardar cambios" />
+            @if (ViewBag.Correcto != null)
+            {
+                <div class="alert alert-success" role="alert">
+                    @ViewBag.Correcto
+                </div>
+            }
+        </div>
+    </fieldset>
+}

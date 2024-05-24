@@ -33,7 +33,7 @@
             {
                 <tr>
                     <th><button onclick="location.href = '@(Url.Action("RemoveManagementUser", "UsuariosAdministradores", new { id = item.PkUser , pagina = Model.PageNumber}))'">&#x274c;</button></th>
-                    <th style="padding-right: 2em"><button onclick="location.href = '@(Url.Action("UsuarioVista", "UsuarioVista", new { user = item }))'">&#128221;</button></th>
+                    <th style="padding-right: 2em"><button onclick="location.href = '@(Url.Action("MostrarUsuarioAdministrador", "UsuariosAdministradores", new { id = item.PkUser }))'">&#128221;</button></th>
                     <td>@item.PkUser</td>
                     <td>@item.Login</td>
                     <td>@item.Password</td>
@@ -47,6 +47,7 @@
         </tbody>
     </table>
 </div>
+<button type="button" class="btn btn-outline-secondary" onclick="location.href = '@(Url.Action("AnyadeAdmin", "UsuariosAdministradores"))'">Añadir administrador</button>
 
 <br />
 Page @( Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
