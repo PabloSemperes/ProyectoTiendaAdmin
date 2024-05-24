@@ -17,6 +17,10 @@ namespace NTTShopAdmin.Controllers
     {
         public ActionResult UsuariosAdministradores(int? pageSize, int? page)
         {
+            if (Session["UserLogin"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             AmbosUsuarios ambosUsuarios = new AmbosUsuarios();
             var users = GetAllManagementUser();
 
@@ -52,11 +56,11 @@ namespace NTTShopAdmin.Controllers
             }
             return users;
         }
-        private User GetUser(int id)
+        private ManagementUser GetManagementUser(int id)
         {
-            string url = @"https://localhost:7204/api/User/getUser/";
+            string url = @"https://localhost:7204/api/ManagementUser/getManagementUser/";
             url = url + id;
-            User user = null;
+            ManagementUser user = null;
 
             try
             {
@@ -69,7 +73,7 @@ namespace NTTShopAdmin.Controllers
                 {
                     var result = streamReader.ReadToEnd();
                     JObject jsonObject = JObject.Parse(result);
-                    user = jsonObject["user"].ToObject<User>();
+                    user = jsonObject["managementUser"].ToObject<ManagementUser>();
                 }
             }
             catch (Exception ex)
@@ -77,6 +81,26 @@ namespace NTTShopAdmin.Controllers
 
             }
             return user;
+        }
+        public ActionResult UsuarioAdministradorVista(ManagementUser user)
+        {
+            if (Session["UserLogin"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            ViewBag.Lenguajes = GetAllLanguagesIsos();
+            if (ModelState.IsValid)
+            {
+                UpdateManagementUser(user);
+                ViewBag.Correcto = "Usuario actualizado";
+            }
+            return View(user);
+        }
+        public ActionResult MostrarUsuarioAdministrador(int id)
+        {
+            ViewBag.Lenguajes = GetAllLanguagesIsos();
+            ManagementUser user = GetManagementUser(id);
+            return View("UsuarioAdministradorVista", user);
         }
         public ActionResult RemoveManagementUser(int id, int pagina)
         {
@@ -105,6 +129,73 @@ namespace NTTShopAdmin.Controllers
             }
             return RedirectToAction("UsuariosAdministradores", new { pageSize = 5, page = pagina });
         }
+        private List<string> GetAllLanguagesIsos()
+        {
+            List<Language> list = new List<Language>();
+            List<string> isos = new List<string>();
 
+            string url = @"https://localhost:7204/api/Language/getAllLanguages";
+
+            try
+            {
+                var httpRequest = (HttpWebRequest)WebRequest.Create(url);
+                httpRequest.Method = "GET";
+
+                var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    var result = streamReader.ReadToEnd();
+                    JObject jsonObject = JObject.Parse(result);
+                    JArray jsonArray = jsonObject["languageList"].ToObject<JArray>();
+                    list = jsonArray.ToObject<List<Language>>();
+                }
+
+                foreach (Language item in list)
+                {
+                    isos.Add(item.iso);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+            return isos;
+        }
+        private sbyte UpdateManagementUser(ManagementUser user)
+        {
+            user.Password = "";
+            sbyte result = -1;
+            string url = @"https://localhost:7204/api/ManagementUser/UpdateManagementUser";
+            var userData = new { managementUser = user };
+            string json = JsonConvert.SerializeObject(userData);
+
+            HttpWebResponse httpResponse = null;
+
+            try
+            {
+                var httpRequest = (HttpWebRequest)WebRequest.Create(url);
+                httpRequest.Method = "PUT";
+
+                httpRequest.Accept = "application/json";
+                httpRequest.ContentType = "application/json";
+
+                using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
+                {
+                    streamWriter.Write(json);
+                }
+
+                httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+
+                result = 1;
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("404")) result = 2;
+                else if (ex.Message.Contains("400")) result = 0;
+            }
+            return result;
+        }
+        public ActionResult 
     }
 }

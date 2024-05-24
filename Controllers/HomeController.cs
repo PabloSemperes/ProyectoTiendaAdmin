@@ -10,6 +10,10 @@ namespace NTTShopAdmin.Controllers
     {
         public ActionResult Index()
         {
+            if (Session["UserLogin"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             return View();
         }
 

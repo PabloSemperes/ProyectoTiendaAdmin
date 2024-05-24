@@ -143,6 +143,7 @@ namespace NTTShopAdmin.Controllers
         }
         public ActionResult LogOut() 
         {
+            Session["UserLogin"] = null;
             Session["UserID"] = null;
             return RedirectToAction("Login");
         }
