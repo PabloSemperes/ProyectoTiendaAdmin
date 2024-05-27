@@ -1,18 +1,38 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\lmaciabo\\OneDrive - NTT DATA EMEAL\\Escritorio\\REPOSITORIOS NTTSHOP\\PABLO\\ADMIN\\ProyectoTiendaAdmin\\",
+  "WorkspaceRootPath": "C:\\Users\\psemperm\\OneDrive - NTT DATA EMEAL\\Escritorio\\NTTShopAdmin\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1B85AFF0-4352-4498-90EC-941D2D4CE421}|NTTShopAdmin.csproj|c:\\users\\lmaciabo\\onedrive - ntt data emeal\\escritorio\\repositorios nttshop\\pablo\\admin\\proyectotiendaadmin\\views\\productos\\productos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1B85AFF0-4352-4498-90EC-941D2D4CE421}|NTTShopAdmin.csproj|solutionrelative:views\\productos\\productos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{1B85AFF0-4352-4498-90EC-941D2D4CE421}|NTTShopAdmin.csproj|c:\\users\\psemperm\\onedrive - ntt data emeal\\escritorio\\nttshopadmin\\controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B85AFF0-4352-4498-90EC-941D2D4CE421}|NTTShopAdmin.csproj|solutionrelative:controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1B85AFF0-4352-4498-90EC-941D2D4CE421}|NTTShopAdmin.csproj|c:\\users\\lmaciabo\\onedrive - ntt data emeal\\escritorio\\repositorios nttshop\\pablo\\admin\\proyectotiendaadmin\\views\\productos\\productodetalle.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{1B85AFF0-4352-4498-90EC-941D2D4CE421}|NTTShopAdmin.csproj|C:\\Users\\psemperm\\OneDrive - NTT DATA EMEAL\\Escritorio\\NTTShopAdmin\\views\\productos\\productodetalle.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{1B85AFF0-4352-4498-90EC-941D2D4CE421}|NTTShopAdmin.csproj|solutionrelative:views\\productos\\productodetalle.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1B85AFF0-4352-4498-90EC-941D2D4CE421}|NTTShopAdmin.csproj|c:\\users\\lmaciabo\\onedrive - ntt data emeal\\escritorio\\repositorios nttshop\\pablo\\admin\\proyectotiendaadmin\\controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1B85AFF0-4352-4498-90EC-941D2D4CE421}|NTTShopAdmin.csproj|solutionrelative:controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1B85AFF0-4352-4498-90EC-941D2D4CE421}|NTTShopAdmin.csproj|C:\\Users\\psemperm\\OneDrive - NTT DATA EMEAL\\Escritorio\\NTTShopAdmin\\views\\productos\\productos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B85AFF0-4352-4498-90EC-941D2D4CE421}|NTTShopAdmin.csproj|solutionrelative:views\\productos\\productos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B85AFF0-4352-4498-90EC-941D2D4CE421}|NTTShopAdmin.csproj|C:\\Users\\psemperm\\OneDrive - NTT DATA EMEAL\\Escritorio\\NTTShopAdmin\\views\\productos\\anyadeproducto.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B85AFF0-4352-4498-90EC-941D2D4CE421}|NTTShopAdmin.csproj|solutionrelative:views\\productos\\anyadeproducto.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B85AFF0-4352-4498-90EC-941D2D4CE421}|NTTShopAdmin.csproj|C:\\Users\\psemperm\\OneDrive - NTT DATA EMEAL\\Escritorio\\NTTShopAdmin\\controllers\\usuariosadministradorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B85AFF0-4352-4498-90EC-941D2D4CE421}|NTTShopAdmin.csproj|solutionrelative:controllers\\usuariosadministradorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B85AFF0-4352-4498-90EC-941D2D4CE421}|NTTShopAdmin.csproj|C:\\Users\\psemperm\\OneDrive - NTT DATA EMEAL\\Escritorio\\NTTShopAdmin\\views\\usuariosadministradores\\usuariosadministradores.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B85AFF0-4352-4498-90EC-941D2D4CE421}|NTTShopAdmin.csproj|solutionrelative:views\\usuariosadministradores\\usuariosadministradores.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B85AFF0-4352-4498-90EC-941D2D4CE421}|NTTShopAdmin.csproj|C:\\Users\\psemperm\\OneDrive - NTT DATA EMEAL\\Escritorio\\NTTShopAdmin\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B85AFF0-4352-4498-90EC-941D2D4CE421}|NTTShopAdmin.csproj|solutionrelative:controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B85AFF0-4352-4498-90EC-941D2D4CE421}|NTTShopAdmin.csproj|C:\\Users\\psemperm\\OneDrive - NTT DATA EMEAL\\Escritorio\\NTTShopAdmin\\views\\productos\\anyadedescripcion.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B85AFF0-4352-4498-90EC-941D2D4CE421}|NTTShopAdmin.csproj|solutionrelative:views\\productos\\anyadedescripcion.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -21,51 +41,109 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "DockedWidth": 467,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Productos.cshtml",
-              "DocumentMoniker": "C:\\Users\\lmaciabo\\OneDrive - NTT DATA EMEAL\\Escritorio\\REPOSITORIOS NTTSHOP\\PABLO\\ADMIN\\ProyectoTiendaAdmin\\Views\\Productos\\Productos.cshtml",
-              "RelativeDocumentMoniker": "Views\\Productos\\Productos.cshtml",
-              "ToolTip": "C:\\Users\\lmaciabo\\OneDrive - NTT DATA EMEAL\\Escritorio\\REPOSITORIOS NTTSHOP\\PABLO\\ADMIN\\ProyectoTiendaAdmin\\Views\\Productos\\Productos.cshtml",
-              "RelativeToolTip": "Views\\Productos\\Productos.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-24T11:26:59.949Z",
-              "EditorCaption": ""
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "ProductoDetalle.cshtml",
-              "DocumentMoniker": "C:\\Users\\lmaciabo\\OneDrive - NTT DATA EMEAL\\Escritorio\\REPOSITORIOS NTTSHOP\\PABLO\\ADMIN\\ProyectoTiendaAdmin\\Views\\Productos\\ProductoDetalle.cshtml",
+              "DocumentMoniker": "C:\\Users\\psemperm\\OneDrive - NTT DATA EMEAL\\Escritorio\\NTTShopAdmin\\Views\\Productos\\ProductoDetalle.cshtml",
               "RelativeDocumentMoniker": "Views\\Productos\\ProductoDetalle.cshtml",
-              "ToolTip": "C:\\Users\\lmaciabo\\OneDrive - NTT DATA EMEAL\\Escritorio\\REPOSITORIOS NTTSHOP\\PABLO\\ADMIN\\ProyectoTiendaAdmin\\Views\\Productos\\ProductoDetalle.cshtml",
+              "ToolTip": "C:\\Users\\psemperm\\OneDrive - NTT DATA EMEAL\\Escritorio\\NTTShopAdmin\\Views\\Productos\\ProductoDetalle.cshtml",
               "RelativeToolTip": "Views\\Productos\\ProductoDetalle.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAFcAAAAAAAAAAAAAAGIAAABEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-24T11:26:55.224Z",
+              "WhenOpened": "2024-05-24T12:24:14.203Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AnyadeProducto.cshtml",
+              "DocumentMoniker": "C:\\Users\\psemperm\\OneDrive - NTT DATA EMEAL\\Escritorio\\NTTShopAdmin\\Views\\Productos\\AnyadeProducto.cshtml",
+              "RelativeDocumentMoniker": "Views\\Productos\\AnyadeProducto.cshtml",
+              "ToolTip": "C:\\Users\\psemperm\\OneDrive - NTT DATA EMEAL\\Escritorio\\NTTShopAdmin\\Views\\Productos\\AnyadeProducto.cshtml",
+              "RelativeToolTip": "Views\\Productos\\AnyadeProducto.cshtml",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAAAsAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-24T12:10:26.275Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProductosController.cs",
+              "DocumentMoniker": "C:\\Users\\psemperm\\OneDrive - NTT DATA EMEAL\\Escritorio\\NTTShopAdmin\\Controllers\\ProductosController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProductosController.cs",
+              "ToolTip": "C:\\Users\\psemperm\\OneDrive - NTT DATA EMEAL\\Escritorio\\NTTShopAdmin\\Controllers\\ProductosController.cs",
+              "RelativeToolTip": "Controllers\\ProductosController.cs",
+              "ViewState": "AQIAABcCAAAAAAAAAAAAABYCAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-24T12:01:08.523Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ProductosController.cs",
-              "DocumentMoniker": "C:\\Users\\lmaciabo\\OneDrive - NTT DATA EMEAL\\Escritorio\\REPOSITORIOS NTTSHOP\\PABLO\\ADMIN\\ProyectoTiendaAdmin\\Controllers\\ProductosController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ProductosController.cs",
-              "ToolTip": "C:\\Users\\lmaciabo\\OneDrive - NTT DATA EMEAL\\Escritorio\\REPOSITORIOS NTTSHOP\\PABLO\\ADMIN\\ProyectoTiendaAdmin\\Controllers\\ProductosController.cs",
-              "RelativeToolTip": "Controllers\\ProductosController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "DocumentIndex": 5,
+              "Title": "UsuariosAdministradores.cshtml",
+              "DocumentMoniker": "C:\\Users\\psemperm\\OneDrive - NTT DATA EMEAL\\Escritorio\\NTTShopAdmin\\Views\\UsuariosAdministradores\\UsuariosAdministradores.cshtml",
+              "RelativeDocumentMoniker": "Views\\UsuariosAdministradores\\UsuariosAdministradores.cshtml",
+              "ToolTip": "C:\\Users\\psemperm\\OneDrive - NTT DATA EMEAL\\Escritorio\\NTTShopAdmin\\Views\\UsuariosAdministradores\\UsuariosAdministradores.cshtml",
+              "RelativeToolTip": "Views\\UsuariosAdministradores\\UsuariosAdministradores.cshtml",
+              "ViewState": "AQIAACcAAAAAAAAAAAAAADEAAAB9AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-17T06:46:59.568Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UsuariosAdministradoresController.cs",
+              "DocumentMoniker": "C:\\Users\\psemperm\\OneDrive - NTT DATA EMEAL\\Escritorio\\NTTShopAdmin\\Controllers\\UsuariosAdministradoresController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UsuariosAdministradoresController.cs",
+              "ToolTip": "C:\\Users\\psemperm\\OneDrive - NTT DATA EMEAL\\Escritorio\\NTTShopAdmin\\Controllers\\UsuariosAdministradoresController.cs",
+              "RelativeToolTip": "Controllers\\UsuariosAdministradoresController.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAiwMYAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-24T11:26:42.311Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-17T06:44:35.148Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UsuariosController.cs",
+              "DocumentMoniker": "C:\\Users\\psemperm\\OneDrive - NTT DATA EMEAL\\Escritorio\\NTTShopAdmin\\Controllers\\UsuariosController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UsuariosController.cs",
+              "ToolTip": "C:\\Users\\psemperm\\OneDrive - NTT DATA EMEAL\\Escritorio\\NTTShopAdmin\\Controllers\\UsuariosController.cs",
+              "RelativeToolTip": "Controllers\\UsuariosController.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAmwEMAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-23T20:18:45.199Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Productos.cshtml",
+              "DocumentMoniker": "C:\\Users\\psemperm\\OneDrive - NTT DATA EMEAL\\Escritorio\\NTTShopAdmin\\Views\\Productos\\Productos.cshtml",
+              "RelativeDocumentMoniker": "Views\\Productos\\Productos.cshtml",
+              "ToolTip": "C:\\Users\\psemperm\\OneDrive - NTT DATA EMEAL\\Escritorio\\NTTShopAdmin\\Views\\Productos\\Productos.cshtml",
+              "RelativeToolTip": "Views\\Productos\\Productos.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAABsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-20T06:19:46.168Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AnyadeDescripcion.cshtml",
+              "DocumentMoniker": "C:\\Users\\psemperm\\OneDrive - NTT DATA EMEAL\\Escritorio\\NTTShopAdmin\\Views\\Productos\\AnyadeDescripcion.cshtml",
+              "RelativeDocumentMoniker": "Views\\Productos\\AnyadeDescripcion.cshtml",
+              "ToolTip": "C:\\Users\\psemperm\\OneDrive - NTT DATA EMEAL\\Escritorio\\NTTShopAdmin\\Views\\Productos\\AnyadeDescripcion.cshtml",
+              "RelativeToolTip": "Views\\Productos\\AnyadeDescripcion.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-20T06:47:14.371Z"
             }
           ]
         }

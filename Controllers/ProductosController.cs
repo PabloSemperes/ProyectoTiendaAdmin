@@ -117,6 +117,19 @@ namespace NTTShopAdmin.Controllers
 
         public ActionResult RecibirProducto(int id) 
         {
+            List<Order> orders = GetAllOrders();
+            bool isUsed = false;
+            foreach (var order in orders)
+            {
+                foreach (var des in order.orderDetails)
+                {
+                    if (des.idProduct == id)
+                    {
+                        isUsed = true;
+                    }
+                }
+            }
+            ViewBag.IsUsed = isUsed;
             Product product = GetProduct(id);
             ViewBag.Lenguajes = GetAllLanguagesIsos();
             TempData["ProductoBase"] = product;
