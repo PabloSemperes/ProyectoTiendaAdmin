@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Editar producto";
+    bool isUsed = ViewBag.IsUsed;
 }
 
 <h2>Editar producto</h2>
@@ -87,6 +88,17 @@
             </button>
             <br /><br />
             <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            @if (isUsed)
+                {
+
+
+<p class="alert alert-danger">Este producto <strong>no</strong> se puede <strong>eliminar</strong> ya que está en algún pedido.</p>
+}
+else
+                {
+                    <a href="@Url.Action("DeleteProduct", "Productos", new {idProduct=Model.idProduct})" class="btn btn-danger">Eliminar producto</a>
+                }
+
         </fieldset>
     }
 

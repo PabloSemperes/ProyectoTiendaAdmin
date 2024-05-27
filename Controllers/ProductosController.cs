@@ -6,6 +6,7 @@ using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Printing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -35,6 +36,8 @@ namespace NTTShopAdmin.Controllers
 
             return View(products.ToPagedList(page.Value, pageSize.Value));
         }
+
+
         public ActionResult AnyadeProducto(Product product) 
         {
             if (Session["UserLogin"] == null)
@@ -64,12 +67,27 @@ namespace NTTShopAdmin.Controllers
 
             return View(product);
         }
+
+
         public ActionResult ProductoDetalle(Product producto) 
         {
             if (Session["UserLogin"] == null)
             {
                 return RedirectToAction("Login", "Login");
             }
+            List<Order> orders = GetAllOrders();
+            bool isUsed = false;
+            foreach (var order in orders)
+            {
+                foreach (var des in order.orderDetails)
+                {
+                    if (des.idProduct == producto.idProduct)
+                    {
+                        isUsed = true;
+                    }
+                }
+            }
+            ViewBag.IsUsed = isUsed;
             ViewBag.Lenguajes = GetAllLanguagesIsos();
             if (ModelState.IsValid)
             {
@@ -106,14 +124,32 @@ namespace NTTShopAdmin.Controllers
 
             return View(producto);
         }
+
+
+
         public ActionResult RecibirProducto(int id) 
         {
+            List<Order> orders = GetAllOrders();
+            bool isUsed = false;
+            foreach (var order in orders)
+            {
+                foreach (var des in order.orderDetails)
+                {
+                    if (des.idProduct == id)
+                    {
+                        isUsed = true;
+                    }
+                }
+            }
+            ViewBag.IsUsed = isUsed;
             Product product = GetProduct(id);
             ViewBag.Lenguajes = GetAllLanguagesIsos();
             TempData["ProductoBase"] = product;
 
             return View("ProductoDetalle", product);
         }
+
+
         public ActionResult PreparaPrecio() 
         {
             Product productoBase = (Product)TempData["ProductoBase"];
@@ -124,6 +160,8 @@ namespace NTTShopAdmin.Controllers
             TempData["NuevoPrecio"] = rate;
             return RedirectToAction("AnyadirPrecio");
         }
+
+
         public ActionResult AnyadeDescripcion(ProductDescription desc)
         {
             if (Session["UserLogin"] == null)
@@ -159,6 +197,7 @@ namespace NTTShopAdmin.Controllers
             }
             return View(desc);
         }
+
         public ActionResult AnyadirPrecio(ProductRate rate) 
         {
             if (Session["UserLogin"] == null)
@@ -189,6 +228,32 @@ namespace NTTShopAdmin.Controllers
             }
             return View(rate);
         }
+
+
+        public ActionResult DeleteProduct(int idProduct)
+        {
+
+            
+                if (DeleteProductFunction(idProduct))
+                {
+                    return RedirectToAction(nameof(Productos));
+                }
+                else
+                {
+                    return View("Error");
+                }
+            
+        }
+
+
+
+
+
+
+
+
+
+
         private sbyte InsertProduct(Product product)
         {
             sbyte result = -1;
@@ -223,6 +288,7 @@ namespace NTTShopAdmin.Controllers
             }
             return result;
         }
+
         private sbyte SetPrice(int idProd, int idRat, decimal pric) 
         {
             sbyte result = -1;
@@ -256,6 +322,7 @@ namespace NTTShopAdmin.Controllers
             }
             return result;
         }
+
         private sbyte UpdateProduct(Product product)
         {
             sbyte result = -1;
@@ -289,6 +356,7 @@ namespace NTTShopAdmin.Controllers
             }
             return result;
         }
+
         private List<Product> GetAllProducts()
         {
             List<Product> list = new List<Product>();
@@ -329,6 +397,7 @@ namespace NTTShopAdmin.Controllers
             }
             return list;
         }
+
         private List<string> GetAllLanguagesIsos()
         {
             List<Language> list = new List<Language>();
@@ -362,6 +431,7 @@ namespace NTTShopAdmin.Controllers
             }
             return isos;
         }
+
         private List<int> GetAllRatesId() 
         {
             List<Rate> list = new List<Rate>();
@@ -395,6 +465,7 @@ namespace NTTShopAdmin.Controllers
             }
             return ides;
         }
+
         private Product GetProduct(int id)
         {
             Product product;
@@ -422,5 +493,71 @@ namespace NTTShopAdmin.Controllers
             }
             return product;
         }
+
+
+        private List<Order> GetAllOrders()
+        {
+            
+                List<Order> list = new List<Order>();
+                string url = @"https://localhost:7204/api/Order/getAllOrders";
+                string data = "?fromDate=" + null + "&toDate=" + null + "&OrderStatus=" + null;
+                url += data;
+                try
+                {
+                    var httpRequest = (HttpWebRequest)WebRequest.Create(url);
+                    httpRequest.Method = "GET";
+
+                    var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+
+                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                    {
+                        var result = streamReader.ReadToEnd();
+                        JObject jsonObject = JObject.Parse(result);
+                        JArray jsonArray = jsonObject["orders"].ToObject<JArray>();
+                        list = jsonArray.ToObject<List<Order>>();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message, ex);
+                }
+                return list;
+            }
+
+        private bool DeleteProductFunction(int idProduct)
+        {
+            bool correct;
+            string url = @"https://localhost:7204/api/Product/deleteProduct";
+            var idData = new { idProduct };
+            string json = JsonConvert.SerializeObject(idData);
+
+            try
+            {
+                var httpRequest = (HttpWebRequest)WebRequest.Create(url);
+                httpRequest.Method = "DELETE";
+
+                httpRequest.Accept = "application/json";
+                httpRequest.ContentType = "application/json";
+
+                using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
+                {
+                    streamWriter.Write(json);
+                }
+
+                var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+                correct = true;
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("409")) TempData["sErrMsg"] = "Ese lenguaje está aún en uso";
+                correct = false;
+            }
+            return correct;
+
+
+        }
+
+       
+
     }
 }
