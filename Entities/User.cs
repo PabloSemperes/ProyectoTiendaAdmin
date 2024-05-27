@@ -25,6 +25,7 @@ namespace NTTShopAdmin.Entities
         [RegularExpression(@"^[0-9]+$",
         ErrorMessage = "Por favor, introduzca un número")]
         public string Phone { get; set; }
+        [Required]
         public string Email { get; set; }
         public string Language { get; set; }
         public int Rate { get; set; }

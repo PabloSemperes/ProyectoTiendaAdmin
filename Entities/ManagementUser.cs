@@ -12,7 +12,7 @@ namespace NTTShopAdmin.Entities
         [Required]
         public string Login { get; set; }
         [Required]
-        [StringLength(20,ErrorMessage = "Password must be between 10 and 20 characters", MinimumLength = 10)]
+        [StringLength(100,ErrorMessage = "Password must be longer than 10 characters", MinimumLength = 10)]
         public string Password { get; set; }
         public string Name { get; set; }
         public string Surname1 { get; set; }

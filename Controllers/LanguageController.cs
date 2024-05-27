@@ -19,6 +19,10 @@ namespace NTTShopAdmin.Controllers
     {
         public ActionResult Language(int? pageSize, int? page)
         {
+            if (Session["UserLogin"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             List<Language> languages = GetAllLanguages();
 
             pageSize = (pageSize ?? 5);
