@@ -5,6 +5,35 @@
 <h2>Idiomas</h2>
 @using PagedList.Mvc;
 @model PagedList.IPagedList<NTTShopAdmin.Entities.Language>
+<div>
+    @using (Html.BeginForm("AgregarLanguage", "Language", FormMethod.Post))
+    {
+        <div class="col-md-6">
+            Agregar idioma
+            <div class="form-horizontal">
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Descripción</label>
+                    <div class="col-md-10">
+                        <input name="txtDescripcion" type="text" value="" class="form-control" placeholder="Descripcion">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Iso</label>
+                    <div class="col-md-10">
+                        <input name="txtIso" type="text" value="" class="form-control" placeholder="Iso">
+                    </div>
+                </div>
+
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" name="action" value="Añadir" class="btn btn-default">Añadir</button>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>
 
 <table class="table">
     <thead>

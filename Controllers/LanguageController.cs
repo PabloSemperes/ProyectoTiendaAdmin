@@ -10,8 +10,10 @@ using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using System.Windows.Forms;
 
 namespace NTTShopAdmin.Controllers
 {
@@ -126,6 +128,94 @@ namespace NTTShopAdmin.Controllers
                 throw new Exception(ex.Message, ex);
             }
             return list;
+        }
+        public ActionResult AgregarLanguage(string action,  string txtDescripcion, string txtIso)
+        {
+            List<Language> languages = GetAllLanguages();
+            if ( !string.IsNullOrWhiteSpace(txtDescripcion) && !string.IsNullOrWhiteSpace(txtIso))
+            {
+               
+                if (action == "Añadir")
+                {
+                    
+                    Language language = new Language();
+
+                    language.idLanguage = 1;
+                    language.description = txtDescripcion;
+                    language.iso = txtIso;
+
+                    if (!InsertarLanguage(language))
+                    {
+                        MessageBox.Show("Error: ISO ya existe", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    }
+                    else
+                    {
+                        languages = GetAllLanguages();
+                    }
+                    
+
+
+
+                    return View("Language", languages.ToPagedList(1, 5));
+                }
+
+
+            }
+
+
+            return View("Language", languages.ToPagedList(1, 5));
+        }
+        public bool InsertarLanguage(Language language)
+        {
+            bool insertado = false;
+            string baseUrl = "https://localhost:7204/api/";
+            // esto nos permite poder poner lo de Language{
+            //   idLanguage = "", descripcion = "", iso "" }
+            var languageData = new { language = language };
+
+            string jsonData = JsonConvert.SerializeObject(languageData);
+
+            string url = baseUrl + "Language/insertLanguage";
+
+            try
+            {
+                //HTTP POST
+                var httpRequest = (HttpWebRequest)WebRequest.Create(url);
+                httpRequest.Method = "POST";
+                httpRequest.Accept = "application/json";
+                httpRequest.ContentType = "application/json";
+
+                // Escribimos el cuerpo del mensaje
+                using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
+                {
+                    streamWriter.Write(jsonData);
+                }
+
+                var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+                HttpStatusCode statusCode = httpResponse.StatusCode;
+
+                // Si es OK
+                if (statusCode == HttpStatusCode.OK)
+                {
+                    insertado = true;
+                }
+                else
+                {
+                    // Si hay un error, leer el mensaje de error 
+                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                    {
+                        string errorMessage = streamReader.ReadToEnd();
+                        Console.WriteLine("Error de la API: " + errorMessage);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al realizar la solicitud: " + ex.Message);
+            }
+
+            return insertado;
         }
     }
 }
