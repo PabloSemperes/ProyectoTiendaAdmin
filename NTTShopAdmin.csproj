@@ -389,6 +389,7 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -580,6 +581,7 @@
     <Content Include="Views\Language\ErrorLanguage.cshtml" />
     <Content Include="Views\UsuariosAdministradores\UsuariosAdministradores.cshtml" />
     <Content Include="Views\UsuariosAdministradores\UsuarioAdministradorVista.cshtml" />
+    <Content Include="Views\UsuariosAdministradores\UsuarioAdministradorAnyadir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
