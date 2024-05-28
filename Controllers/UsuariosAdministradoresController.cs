@@ -96,6 +96,54 @@ namespace NTTShopAdmin.Controllers
             }
             return View(user);
         }
+        public ActionResult UsuarioAdministradorAnyadir(ManagementUser user)
+        {
+            if (Session["UserLogin"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            ViewBag.Lenguajes = GetAllLanguagesIsos();
+            if (ModelState.IsValid)
+            {
+                InsertManagementUser(user);
+                ViewBag.Correcto = "Usuario añadido";
+            }
+            return View(user);
+        }
+        private sbyte InsertManagementUser(ManagementUser user)
+        {
+            sbyte result = -1;
+            string url = @"https://localhost:7204/api/ManagementUser/InsertManagementUser";
+            var userData = new { managementUser = user };
+            string json = JsonConvert.SerializeObject(userData);
+
+            HttpWebResponse httpResponse = null;
+
+            try
+            {
+                var httpRequest = (HttpWebRequest)WebRequest.Create(url);
+                httpRequest.Method = "POST";
+
+                httpRequest.Accept = "application/json";
+                httpRequest.ContentType = "application/json";
+
+                using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
+                {
+                    streamWriter.Write(json);
+                }
+
+                httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+
+                result = 1;
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("409")) result = 2;
+                else if (ex.Message.Contains("400")) result = 0;
+                else if (ex.Message.Contains("404")) result = 3;
+            }
+            return result;
+        }
         public ActionResult MostrarUsuarioAdministrador(int id)
         {
             ViewBag.Lenguajes = GetAllLanguagesIsos();
@@ -196,6 +244,6 @@ namespace NTTShopAdmin.Controllers
             }
             return result;
         }
-        public ActionResult 
+        
     }
 }
