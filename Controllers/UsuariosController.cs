@@ -12,6 +12,9 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using System.Xml.Linq;
+using System.Reflection;
+using System.Windows.Forms;
+using static System.Net.WebRequestMethods;
 
 namespace NTTShopAdmin.Controllers
 {
@@ -30,30 +33,20 @@ namespace NTTShopAdmin.Controllers
         }
         public ActionResult RemoveUser(int id) 
         {
-            string url = @"https://localhost:7204/api/User/DeleteUser";
-            var idData = new { id };
-            string json = JsonConvert.SerializeObject(idData);
 
-            try
+            
+            User user = GetUser(id);
+
+            if (!DeleteUser(user.PkUser))
             {
-                var httpRequest = (HttpWebRequest)WebRequest.Create(url);
-                httpRequest.Method = "DELETE";
-
-                httpRequest.Accept = "application/json";
-                httpRequest.ContentType = "application/json";
-
-                using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
-                {
-                    streamWriter.Write(json);
-                }
-
-                var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+                MessageBox.Show("Error: Usuario tiene pedidos, no se ha eliminado el usuario!", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception ex)
+            else
             {
-
+                MessageBox.Show("Se ha eliminado el usuario", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            return RedirectToAction("Usuarios");
+            return RedirectToAction("Usuarios", "Usuarios");
+
         }
         public ActionResult UsuarioVista(User user)
         {
@@ -238,6 +231,43 @@ namespace NTTShopAdmin.Controllers
             }
             return ides;
         }
+        public bool DeleteUser(int id)
+        {
+            bool eliminado = false;
+             string baseUrl = "https://localhost:7204/api";
+             string url = baseUrl + "Users/deleteUser";
+            var idData = new { id };
+            string json = JsonConvert.SerializeObject(idData);
+            try
+            {
+
+                var httpRequest = (HttpWebRequest)WebRequest.Create(url);
+                httpRequest.Method = "DELETE";
+
+                httpRequest.Accept = "application/json";
+                httpRequest.ContentType = "application/json";
+
+                using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
+                {
+                    streamWriter.Write(json);
+                }
+
+                using (var httpResponse = (HttpWebResponse)httpRequest.GetResponse())
+                {
+                    if (httpResponse.StatusCode == HttpStatusCode.OK)
+                    {
+                        eliminado = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al realizar la solicitud: " + ex.Message);
+            }
+
+            return eliminado;
+        }
+
 
     }
 }
