@@ -235,7 +235,7 @@ namespace NTTShopAdmin.Controllers
         {
             bool eliminado = false;
              string baseUrl = "https://localhost:7204/api";
-             string url = baseUrl + "Users/deleteUser";
+             string url = baseUrl + "/User/DeleteUser";
             var idData = new { id };
             string json = JsonConvert.SerializeObject(idData);
             try
