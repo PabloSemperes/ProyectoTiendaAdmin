@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Editar producto";
-    bool isUsed = ViewBag.IsUsed;
+    bool isUsed = bool.Parse(ViewData["isUsed"].ToString());
 }
 
 <h2>Editar producto</h2>
@@ -92,9 +92,9 @@
                 {
 
 
-<p class="alert alert-danger">Este producto <strong>no</strong> se puede <strong>eliminar</strong> ya que está en algún pedido.</p>
-}
-else
+                <p class="alert alert-danger">Este producto <strong>no</strong> se puede <strong>eliminar</strong> ya que está en algún pedido.</p>
+                }
+                else
                 {
                     <a href="@Url.Action("DeleteProduct", "Productos", new {idProduct=Model.idProduct})" class="btn btn-danger">Eliminar producto</a>
                 }

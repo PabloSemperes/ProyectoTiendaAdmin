@@ -14,9 +14,14 @@ namespace NTTShopAdmin.Entities
         [Required]
         [StringLength(100,ErrorMessage = "Password must be longer than 10 characters", MinimumLength = 10)]
         public string Password { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Surname1 { get; set; }
         public string Surname2 { get; set; }
+        [Required(ErrorMessage = "Es necesario introducir un correo electrónico.")]
+        [Display(Name = "Correo electrónico")]
+        [RegularExpression(@"^[^\s@]+@[^\s@]+\.(com|es)$", ErrorMessage = "Dirección de correo inválido. Debe tener '@' y terminar en '.com' o '.es'.")]
         public string Email { get; set; }
         public string Language { get; set; }
         public ManagementUser() { }

@@ -88,6 +88,7 @@ namespace NTTShopAdmin.Controllers
                 }
             }
             ViewBag.IsUsed = isUsed;
+            ViewData["isUsed"] = isUsed;
             ViewBag.Lenguajes = GetAllLanguagesIsos();
             if (ModelState.IsValid)
             {
@@ -145,6 +146,7 @@ namespace NTTShopAdmin.Controllers
             Product product = GetProduct(id);
             ViewBag.Lenguajes = GetAllLanguagesIsos();
             TempData["ProductoBase"] = product;
+            ViewData["isUsed"] = isUsed;
 
             return View("ProductoDetalle", product);
         }

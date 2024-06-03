@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NTTShopAdmin.Entities;
+using NTTShopAdmin.ViewModels;
 
 
 namespace NTTShopAdmin.Controllers
@@ -29,7 +30,7 @@ namespace NTTShopAdmin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(ManagementUser objUser)
+        public ActionResult Login(LoginClass objUser)
         {
             ManagementUser usuario = new ManagementUser();
             if (ModelState.IsValid)
