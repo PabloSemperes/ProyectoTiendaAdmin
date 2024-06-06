@@ -526,11 +526,11 @@ namespace NTTShopAdmin.Controllers
                 return list;
             }
 
-        private bool DeleteProductFunction(int idProduct)
+        private bool DeleteProductFunction(int id)
         {
             bool correct;
             string url = @"https://localhost:7204/api/Product/deleteProduct";
-            var idData = new { idProduct };
+            var idData = new { id };
             string json = JsonConvert.SerializeObject(idData);
 
             try
